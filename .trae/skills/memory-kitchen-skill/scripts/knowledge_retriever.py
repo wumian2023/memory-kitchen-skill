@@ -197,21 +197,21 @@ def format_retrieval_results(results):
 def search_by_tags(tags, knowledge_base_dir=None, max_results=10):
     """
     根据标签搜索知识
-    
+
     Args:
         tags (list): 标签列表
         knowledge_base_dir (str): 知识库目录，默认为自动检测的配置目录
         max_results (int): 最大返回结果数
-    
+
     Returns:
         list: 检索结果列表
     """
     # 如果没有指定知识库目录，使用默认路径
     if knowledge_base_dir is None:
         knowledge_base_dir = get_knowledge_base_dir_str()
-    
+
     results = []
-    
+
     # 遍历知识库目录
     categories_dir = os.path.join(knowledge_base_dir, 'categories')
 
@@ -251,21 +251,21 @@ def search_by_tags(tags, knowledge_base_dir=None, max_results=10):
 def search_by_category(category, knowledge_base_dir=None, max_results=10):
     """
     根据分类搜索知识
-    
+
     Args:
         category (str): 分类
         knowledge_base_dir (str): 知识库目录，默认为自动检测的配置目录
         max_results (int): 最大返回结果数
-    
+
     Returns:
         list: 检索结果列表
     """
     # 如果没有指定知识库目录，使用默认路径
     if knowledge_base_dir is None:
         knowledge_base_dir = get_knowledge_base_dir_str()
-    
+
     results = []
-    
+
     # 遍历知识库目录
     categories_dir = os.path.join(knowledge_base_dir, 'categories')
 
