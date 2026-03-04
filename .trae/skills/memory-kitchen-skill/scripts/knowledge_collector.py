@@ -48,41 +48,91 @@ def collect_knowledge(dialogue_history):
 def extract_question_answer_pairs(dialogue_history):
     """
     从对话历史中提取问题和答案对
-
+    
     Args:
         dialogue_history (str): 对话历史文本
-
+    
     Returns:
         list: 问题和答案对的列表
     """
-    # 简单的对话模式匹配
-    # 实际应用中可能需要更复杂的NLP处理
+    # 支持多种对话格式
+    # 格式1: [用户]: ... [助手]: ...
+    # 格式2: 用户: ... 助手: ...
+    # 格式3: [User]: ... [Assistant]: ...
+    # 格式4: User: ... Assistant: ...
+    
     lines = dialogue_history.strip().split('\n')
     pairs = []
-
+    
     question = None
     answer = []
-
+    
+    # 定义用户和助手的识别模式
+    user_patterns = [
+        r'^\[用户\]:',
+        r'^\[User\]:',
+        r'^用户:',
+        r'^User:',
+        r'^\[user\]:',
+        r'^user:'
+    ]
+    
+    assistant_patterns = [
+        r'^\[助手\]:',
+        r'^\[Assistant\]:',
+        r'^助手:',
+        r'^Assistant:',
+        r'^\[assistant\]:',
+        r'^assistant:'
+    ]
+    
+    def is_user_line(line):
+        for pattern in user_patterns:
+            if re.match(pattern, line):
+                return True
+        return False
+    
+    def is_assistant_line(line):
+        for pattern in assistant_patterns:
+            if re.match(pattern, line):
+                return True
+        return False
+    
+    def extract_content(line):
+        # 提取冒号后面的内容
+        if ':' in line:
+            return line.split(':', 1)[1].strip()
+        return line.strip()
+    
     for line in lines:
         line = line.strip()
         if not line:
             continue
-
-        # 假设以 "用户:" 开头的是问题
-        if line.startswith('用户:'):
+        
+        # 检查是否是用户问题
+        if is_user_line(line):
+            # 保存之前的问题和答案对
             if question and answer:
                 pairs.append((question, ' '.join(answer)))
                 answer = []
-            question = line[3:].strip()
-        # 假设以 "助手:" 开头的是答案
-        elif line.startswith('助手:'):
+            # 提取新问题
+            question = extract_content(line)
+        
+        # 检查是否是助手回答
+        elif is_assistant_line(line):
             if question:
-                answer.append(line[3:].strip())
-
+                answer.append(extract_content(line))
+        
+        # 处理多行回答
+        elif question and not is_user_line(line):
+            # 如果是回答的延续行
+            if answer or (question and not any(is_user_line(l) for l in lines[lines.index(line)+1:lines.index(line)+5] if l.strip())):
+                answer.append(line)
+    
     # 处理最后一对
     if question and answer:
         pairs.append((question, ' '.join(answer)))
-
+    
     return pairs
 
 
