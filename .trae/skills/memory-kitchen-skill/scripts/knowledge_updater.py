@@ -10,21 +10,8 @@ import re
 import json
 from datetime import datetime, timedelta
 
-
-def get_knowledge_base_dir():
-    """
-    获取知识库目录路径
-
-    Returns:
-        str: 知识库目录路径
-    """
-    # 获取用户主目录
-    home_dir = os.path.expanduser('~')
-
-    # 构建知识库路径
-    knowledge_base_dir = os.path.join(home_dir, '.trae-cn', 'knowledge')
-
-    return knowledge_base_dir
+# 导入配置模块
+from config import get_knowledge_base_dir, get_knowledge_base_dir_str
 
 
 def update_knowledge_base(knowledge_base_dir=None):
@@ -32,11 +19,11 @@ def update_knowledge_base(knowledge_base_dir=None):
     更新和维护知识库
 
     Args:
-        knowledge_base_dir (str): 知识库目录，默认为用户目录下的 .trae-cn/knowledge
+        knowledge_base_dir (str): 知识库目录，默认为自动检测的配置目录
     """
     # 如果没有指定知识库目录，使用默认路径
     if knowledge_base_dir is None:
-        knowledge_base_dir = get_knowledge_base_dir()
+        knowledge_base_dir = get_knowledge_base_dir_str()
 
     # 收集所有知识文件
     knowledge_files = collect_knowledge_files(knowledge_base_dir)

@@ -11,11 +11,26 @@ name: memory-kitchen-skill
 
 ## 知识库位置
 
-知识库统一存储在用户目录下的 `.trae-cn/knowledge` 目录中：
-- **Windows**: `C:\Users\Administrator\.trae-cn\knowledge`
-- **Linux/Mac**: `~/.trae-cn/knowledge`
+技能会自动检测当前运行的 AI 工具环境，并将知识库存储在对应的配置目录中：
+
+| AI 工具 | 配置目录 | 知识库路径 |
+|---------|---------|-------------|
+| Claude | `~/.claude/` | `~/.claude/knowledge/` |
+| Cursor | `~/.cursor/` | `~/.cursor/knowledge/` |
+| Qoder | `~/.qoder/` | `~/.qoder/knowledge/` |
+| Trae | `~/.trae/` | `~/.trae/knowledge/` |
+| Trae-CN | `~/.trae-cn/` | `~/.trae-cn/knowledge/` |
 
 这样可以实现跨项目共享知识，避免知识碎片化。
+
+### 手动指定环境
+
+如果自动检测不准确，可以通过设置环境变量手动指定 AI 工具：
+
+```bash
+export AI_TOOL=claude  # Linux/Mac
+set AI_TOOL=claude       # Windows PowerShell
+```
 
 ## When to Use
 

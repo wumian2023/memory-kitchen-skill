@@ -8,24 +8,10 @@
 import re
 import json
 import os
-import platform
 from datetime import datetime
 
-
-def get_knowledge_base_dir():
-    """
-    获取知识库目录路径
-
-    Returns:
-        str: 知识库目录路径
-    """
-    # 获取用户主目录
-    home_dir = os.path.expanduser('~')
-
-    # 构建知识库路径
-    knowledge_base_dir = os.path.join(home_dir, '.trae-cn', 'knowledge')
-
-    return knowledge_base_dir
+# 导入配置模块
+from config import get_knowledge_base_dir, get_knowledge_base_dir_str
 
 
 def collect_knowledge(dialogue_history):

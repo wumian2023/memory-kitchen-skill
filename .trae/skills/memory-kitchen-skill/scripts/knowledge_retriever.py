@@ -10,21 +10,8 @@ import re
 import json
 from datetime import datetime
 
-
-def get_knowledge_base_dir():
-    """
-    获取知识库目录路径
-
-    Returns:
-        str: 知识库目录路径
-    """
-    # 获取用户主目录
-    home_dir = os.path.expanduser('~')
-
-    # 构建知识库路径
-    knowledge_base_dir = os.path.join(home_dir, '.trae-cn', 'knowledge')
-
-    return knowledge_base_dir
+# 导入配置模块
+from config import get_knowledge_base_dir, get_knowledge_base_dir_str
 
 
 def retrieve_knowledge(query, knowledge_base_dir=None, max_results=5):
@@ -33,7 +20,7 @@ def retrieve_knowledge(query, knowledge_base_dir=None, max_results=5):
 
     Args:
         query (str): 查询关键词
-        knowledge_base_dir (str): 知识库目录，默认为用户目录下的 .trae-cn/knowledge
+        knowledge_base_dir (str): 知识库目录，默认为自动检测的配置目录
         max_results (int): 最大返回结果数
 
     Returns:
@@ -41,7 +28,7 @@ def retrieve_knowledge(query, knowledge_base_dir=None, max_results=5):
     """
     # 如果没有指定知识库目录，使用默认路径
     if knowledge_base_dir is None:
-        knowledge_base_dir = get_knowledge_base_dir()
+        knowledge_base_dir = get_knowledge_base_dir_str()
 
     results = []
 
@@ -213,7 +200,7 @@ def search_by_tags(tags, knowledge_base_dir=None, max_results=10):
     
     Args:
         tags (list): 标签列表
-        knowledge_base_dir (str): 知识库目录，默认为用户目录下的 .trae-cn/knowledge
+        knowledge_base_dir (str): 知识库目录，默认为自动检测的配置目录
         max_results (int): 最大返回结果数
     
     Returns:
@@ -221,7 +208,7 @@ def search_by_tags(tags, knowledge_base_dir=None, max_results=10):
     """
     # 如果没有指定知识库目录，使用默认路径
     if knowledge_base_dir is None:
-        knowledge_base_dir = get_knowledge_base_dir()
+        knowledge_base_dir = get_knowledge_base_dir_str()
     
     results = []
     
@@ -267,7 +254,7 @@ def search_by_category(category, knowledge_base_dir=None, max_results=10):
     
     Args:
         category (str): 分类
-        knowledge_base_dir (str): 知识库目录，默认为用户目录下的 .trae-cn/knowledge
+        knowledge_base_dir (str): 知识库目录，默认为自动检测的配置目录
         max_results (int): 最大返回结果数
     
     Returns:
@@ -275,7 +262,7 @@ def search_by_category(category, knowledge_base_dir=None, max_results=10):
     """
     # 如果没有指定知识库目录，使用默认路径
     if knowledge_base_dir is None:
-        knowledge_base_dir = get_knowledge_base_dir()
+        knowledge_base_dir = get_knowledge_base_dir_str()
     
     results = []
     

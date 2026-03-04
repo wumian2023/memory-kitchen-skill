@@ -10,21 +10,8 @@ import json
 import markdown
 from datetime import datetime
 
-
-def get_knowledge_base_dir():
-    """
-    获取知识库目录路径
-
-    Returns:
-        str: 知识库目录路径
-    """
-    # 获取用户主目录
-    home_dir = os.path.expanduser('~')
-
-    # 构建知识库路径
-    knowledge_base_dir = os.path.join(home_dir, '.trae-cn', 'knowledge')
-
-    return knowledge_base_dir
+# 导入配置模块
+from config import get_knowledge_base_dir, get_knowledge_base_dir_str, ensure_knowledge_base_exists
 
 
 def organize_knowledge(knowledge_items, output_dir=None):
@@ -37,7 +24,10 @@ def organize_knowledge(knowledge_items, output_dir=None):
     """
     # 如果没有指定输出目录，使用默认的知识库目录
     if output_dir is None:
-        output_dir = get_knowledge_base_dir()
+        output_dir = get_knowledge_base_dir_str()
+
+    # 确保知识库目录存在
+    ensure_knowledge_base_exists()
 
     # 创建知识库目录结构
     create_knowledge_base_structure(output_dir)
@@ -284,7 +274,7 @@ def load_collected_knowledge(input_file=None):
     """
     # 如果没有指定输入文件，尝试在知识库目录中查找最新的收集文件
     if input_file is None:
-        knowledge_base_dir = get_knowledge_base_dir()
+        knowledge_base_dir = get_knowledge_base_dir_str()
         collected_files = []
 
         if os.path.exists(knowledge_base_dir):
