@@ -1,5 +1,5 @@
 ---
-description: 自动记忆知识库技能，用于收集、整理、存储和检索知识，建立个人或项目知识库，实现知识的自动化积累和智能化应用。当用户需要管理知识、存储解决方案、建立知识库时使用此技能。
+description: 自动记忆知识库技能，用于收集、整理、存储和检索知识，建立个人或项目知识库，实现知识的自动化积累和智能化应用。当用户需要管理知识、存储解决方案、建立知识库时使用此技能。知识库存储在用户目录下的 .trae-cn/knowledge 中，支持跨项目共享。
 name: memory-kitchen-skill
 ---
 
@@ -8,6 +8,14 @@ name: memory-kitchen-skill
 ## Overview
 
 自动记忆知识库技能是一个专注于知识管理的智能技能，旨在帮助用户建立和管理个人或项目知识库。它能够自动收集对话中的重要信息，智能整理和分类知识，结构化存储知识，并提供快速检索和提取功能。
+
+## 知识库位置
+
+知识库统一存储在用户目录下的 `.trae-cn/knowledge` 目录中：
+- **Windows**: `C:\Users\Administrator\.trae-cn\knowledge`
+- **Linux/Mac**: `~/.trae-cn/knowledge`
+
+这样可以实现跨项目共享知识，避免知识碎片化。
 
 ## When to Use
 
@@ -38,6 +46,7 @@ name: memory-kitchen-skill
 
 ### References
 
+- `references/knowledge_location.md`：知识库位置配置和手动创建指南
 - `references/knowledge_structure.md`：知识库结构和组织方式
 - `references/retrieval_strategies.md`：知识检索策略和方法
 - `references/best_practices.md`：知识库管理最佳实践

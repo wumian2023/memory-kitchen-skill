@@ -1,28 +1,37 @@
 # 知识库结构和组织方式
 
-## 1. 整体结构
+## 1. 知识库位置
+
+知识库统一存储在用户目录下的 `.trae-cn/knowledge` 目录中：
+
+- **Windows**: `C:\Users\Administrator\.trae-cn\knowledge`
+- **Linux/Mac**: `~/.trae-cn/knowledge`
+
+## 2. 整体结构
 
 知识库采用层次化的目录结构，便于知识的组织和管理：
 
 ```
-.trae/
-  knowledge/                 # 知识库根目录
-    categories/              # 分类目录
-      technical/             # 技术知识
-        frontend/            # 前端开发
-        backend/             # 后端开发
-        cloud/               # 云原生
-        database/            # 数据库
-        version-control/     # 版本控制
-      project/               # 项目知识
-      problem-solving/       # 问题解决方案
-        tutorials/           # 教程
-        troubleshooting/     # 故障排除
-      best-practices/        # 最佳实践
-    tags/                    # 标签索引
-    index.md                 # 知识库索引
-    recent-updates.md        # 最近更新
+~/.trae-cn/knowledge/        # 知识库根目录（用户目录下）
+  categories/                # 分类目录
+    技术知识/                # 技术知识
+      前端开发/              # 前端开发
+      后端开发/              # 后端开发
+      云原生/                # 云原生
+      数据库/                # 数据库
+      版本控制/              # 版本控制
+    项目知识/                # 项目知识
+    问题解决方案/            # 问题解决方案
+      教程/                  # 教程
+      故障排除/              # 故障排除
+    最佳实践/                # 最佳实践
+  tags/                      # 标签索引
+  index.md                   # 知识库索引
+  recent-updates.md          # 最近更新
 ```
+
+### 2.1 跨项目共享
+由于知识库存储在用户目录下，所有项目都可以访问和共享同一个知识库，实现知识的积累和复用。
 
 ## 2. 分类体系
 
